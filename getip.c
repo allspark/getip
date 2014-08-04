@@ -1,5 +1,6 @@
 /* getip: A small fastcgi handler that returns the client's IP address.
  * Author: Lukas Martini <lutoma@ohai.su>
+ * Author: Moritz Kaspar Rudert (mortzu) <me@mortzu.de>
  *
  * To the extent possible under law, Lukas Martini has waived all copyright and
  * related or neighboring rights to getip. This work is published from: United
