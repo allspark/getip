@@ -9,32 +9,18 @@
  * http://creativecommons.org/publicdomain/zero/1.0/legalcode
  */
 
-#define LISTEN_ADDR "127.0.0.1:8003"
-
+#include <fcgi_stdio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcgiapp.h>
 
 int main(void)
 {
-	FCGX_Init();
-	int listen_socket = FCGX_OpenSocket(LISTEN_ADDR, 400);
-	FCGX_Request request;
-	FCGX_InitRequest(&request, listen_socket, 0);
-
-	if(fork())
-	{
-		printf("Successfull startup.\n");
-		_Exit(EXIT_SUCCESS);
-	}
-
-	while(FCGX_Accept_r(&request) == 0)
-		FCGX_FPrintF(request.out,
-			"Content-Type: text/plain\r\n"
-			"X-Sourcecode: https://github.com/lutoma/getip\r\n"
+	while (FCGI_Accept() >= 0)
+		printf("Content-Type: text/plain\r\n"
+			"X-Sourcecode: https://github.com/mortzu/getip\r\n"
 			"\r\n%s",
-			FCGX_GetParam("REMOTE_ADDR", request.envp));
+			getenv("REMOTE_ADDR"));
 
 	return EXIT_SUCCESS;
 }
