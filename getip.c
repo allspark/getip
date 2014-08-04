@@ -19,7 +19,7 @@ int main(void)
 	while (FCGI_Accept() >= 0)
 		printf("Content-Type: text/plain\r\n"
 			"X-Sourcecode: https://github.com/mortzu/getip\r\n"
-			"\r\n%s",
+			"\r\n%s\r\n",
 			getenv("REMOTE_ADDR"));
 
 	return EXIT_SUCCESS;
