@@ -1,7 +1,7 @@
 all: getip-fcgi
 
-getip-fcgi: getip.c
-	gcc -O3 -Wall -o getip-fcgi getip.c -lfcgi
+getip-fcgi: getip.cpp
+	g++ -std=c++1y -O3 -Wall -o getip-fcgi getip.cpp -lfcgi
 
 install: getip-fcgi
 	cp getip-fcgi /usr/bin/
